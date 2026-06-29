@@ -1,0 +1,26 @@
+name: Build enable_hud.dylib
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Compile dylib for arm64 iOS
+        run: |
+          SDK=$(xcrun --sdk iphoneos --show-sdk-path)
+          clang -arch arm64 -isysroot "$SDK" -miphoneos-version-min=10.0 \
+            -dynamiclib -o enable_hud.dylib enable_hud.m \
+            -framework Foundation -framework UIKit
+          
+          # Strip and sign placeholder
+          strip -x enable_hud.dylib
+          codesign --remove-signature enable_hud.dylib 2>/dev/null || true
+          
+          file enable_hud.dylib
+          ls -la enable_hud.dylib
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dylib
+          path: enable_hud.dylib
