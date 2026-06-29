@@ -1,4 +1,4 @@
-name: Disassemble setHUDEnabled + tapMainButton
+name: Disassemble by address
 on: [workflow_dispatch]
 jobs:
   dump:
@@ -6,23 +6,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Disassemble setHUDEnabled and callers
+      - name: Disassemble tapMainButton
         run: |
-          echo "=== setHUDEnabled: (0x1DD98) ===" > /tmp/out.txt
-          otool -tV -p "_setHUDEnabled" xxqg_original >> /tmp/out.txt
+          echo "=== tapMainButton: (0x9BB24-0x9BCE4) ===" > /tmp/out.txt
+          llvm-objdump -d --start-address=0x10009BB24 --stop-address=0x10009BCE4 xxqg_original >> /tmp/out.txt 2>&1
           echo "" >> /tmp/out.txt
-          echo "=== setHUDEnabled trampoline (0x866B4) ===" >> /tmp/out.txt
-          xxd -s 0x866B4 -l 64 xxqg_original >> /tmp/out.txt
+          echo "=== setHUDEnabled (0x1DD98-0x1E000) ===" >> /tmp/out.txt
+          llvm-objdump -d --start-address=0x10001DD98 --stop-address=0x10001E000 xxqg_original >> /tmp/out.txt 2>&1
           echo "" >> /tmp/out.txt
-          echo "=== tapMainButton: (0x9BB24) ===" >> /tmp/out.txt
-          otool -tV -p "_tapMainButton" xxqg_original >> /tmp/out.txt
+          echo "=== setupAndNotifyToggle (0x86288-0x86408) ===" >> /tmp/out.txt
+          llvm-objdump -d --start-address=0x100086288 --stop-address=0x100086408 xxqg_original >> /tmp/out.txt 2>&1
           echo "" >> /tmp/out.txt
-          echo "=== setupAndNotifyToggle (0x86288) ===" >> /tmp/out.txt
-          otool -tV -p "_setupAndNotifyToggle" xxqg_original >> /tmp/out.txt
-          echo "" >> /tmp/out.txt
-          echo "=== isHUDEnabled getter (0x1DA20) ===" >> /tmp/out.txt
-          xxd -s 0x1DA20 -l 64 xxqg_original >> /tmp/out.txt
-          otool -tV -p "_isHUDEnabled" xxqg_original >> /tmp/out.txt
+          echo "=== HUDRootViewController.viewDidLoad (0x1F408-0x1F7A4) ===" >> /tmp/out.txt
+          llvm-objdump -d --start-address=0x10001F408 --stop-address=0x10001F7A4 xxqg_original >> /tmp/out.txt 2>&1
           cat /tmp/out.txt
       
       - uses: actions/upload-artifact@v4
