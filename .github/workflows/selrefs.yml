@@ -1,0 +1,85 @@
+name: Resolve selectors
+on: [workflow_dispatch]
+jobs:
+  dump:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dump selrefs
+        run: |
+          python3 -c "
+          import struct
+          with open('xxqg_original','rb') as f:
+              data = f.read()
+          
+          # Parse sections to find __objc_selrefs
+          pos = 32
+          ncmds = struct.unpack('<I', data[16:20])[0]
+          segments = []
+          for i in range(ncmds):
+              cmd = struct.unpack('<I', data[pos:pos+4])[0]
+              cmdsize = struct.unpack('<I', data[pos+4:pos+8])[0]
+              if cmd == 0x19:
+                  vmaddr = struct.unpack('<Q', data[pos+24:pos+32])[0]
+                  fileoff = struct.unpack('<Q', data[pos+40:pos+48])[0]
+                  filesize = struct.unpack('<Q', data[pos+48:pos+56])[0]
+                  segments.append({'vmaddr':vmaddr,'fileoff':fileoff,'filesize':filesize})
+                  nsects = struct.unpack('<I', data[pos+64:pos+68])[0]
+                  sp = pos + 72
+                  for j in range(nsects):
+                      sname = data[sp:sp+16].rstrip(b'\x00').decode()
+                      if sname == '__objc_selrefs':
+                          soff = struct.unpack('<I', data[sp+48:sp+52])[0]
+                          saddr = struct.unpack('<Q', data[sp+32:sp+40])[0]
+                          print(f'__objc_selrefs: off=0x{soff:X} addr=0x{saddr:X}')
+                          
+                          # Resolve selectors at specific offsets from 0x1003ad000
+                          targets = [
+                              (0x1b0, 'tapMainButton enable method 1'),
+                              (0x1a8, 'tapMainButton setHUDEnabled:'),
+                              (0x2d0, 'tapMainButton isHUDEnabled'),
+                          ]
+                          for tgt, label in targets:
+                              sel_addr = 0x1003ad000 + tgt
+                              if saddr <= sel_addr:
+                                  idx = (sel_addr - saddr) // 8
+                                  sel_off = soff + idx * 8
+                                  ptr = struct.unpack('<Q', data[sel_off:sel_off+8])[0]
+                                  # Follow pointer to string
+                                  # ptr is VM address, convert to file offset
+                                  for seg in segments:
+                                      if seg['vmaddr'] <= ptr < seg['vmaddr'] + seg['filesize']:
+                                          str_off = seg['fileoff'] + (ptr - seg['vmaddr'])
+                                          end = data.find(b'\x00', str_off)
+                                          s = data[str_off:min(end, str_off+120)].decode('ascii',errors='replace')
+                                          print(f'  [{label}] selrefs[{idx}] @VM:0x{sel_addr:X} file:0x{sel_off:X} ptr:0x{ptr:X} -> \"{s}\"')
+                                          break
+                          
+                          # Also resolve from 0x1003ac000
+                          targets2 = [
+                              (0xfc0, 'tapMainButton enable check'),
+                              (0xf68, 'tapMainButton enable method 2'),
+                              (0x7c0, 'tapMainButton disable call1'),
+                              (0x698, 'tapMainButton disable call2'),
+                          ]
+                          for tgt, label in targets2:
+                              sel_addr = 0x1003ac000 + tgt
+                              if saddr <= sel_addr:
+                                  idx = (sel_addr - saddr) // 8
+                                  sel_off = soff + idx * 8
+                                  ptr = struct.unpack('<Q', data[sel_off:sel_off+8])[0]
+                                  for seg in segments:
+                                      if seg['vmaddr'] <= ptr < seg['vmaddr'] + seg['filesize']:
+                                          str_off = seg['fileoff'] + (ptr - seg['vmaddr'])
+                                          end = data.find(b'\x00', str_off)
+                                          s = data[str_off:min(end, str_off+120)].decode('ascii',errors='replace')
+                                          print(f'  [{label}] selrefs[{idx}] @VM:0x{sel_addr:X} file:0x{sel_off:X} ptr:0x{ptr:X} -> \"{s}\"')
+                                          break
+                      sp += 80
+              pos += cmdsize
+          " > /tmp/out.txt
+          cat /tmp/out.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: selectors
+          path: /tmp/out.txt
