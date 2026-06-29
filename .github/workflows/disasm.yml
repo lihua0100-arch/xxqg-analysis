@@ -1,0 +1,31 @@
+name: Disassemble setHUDEnabled + tapMainButton
+on: [workflow_dispatch]
+jobs:
+  dump:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Disassemble setHUDEnabled and callers
+        run: |
+          echo "=== setHUDEnabled: (0x1DD98) ===" > /tmp/out.txt
+          otool -tV -p "_setHUDEnabled" xxqg_original >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== setHUDEnabled trampoline (0x866B4) ===" >> /tmp/out.txt
+          xxd -s 0x866B4 -l 64 xxqg_original >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== tapMainButton: (0x9BB24) ===" >> /tmp/out.txt
+          otool -tV -p "_tapMainButton" xxqg_original >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== setupAndNotifyToggle (0x86288) ===" >> /tmp/out.txt
+          otool -tV -p "_setupAndNotifyToggle" xxqg_original >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== isHUDEnabled getter (0x1DA20) ===" >> /tmp/out.txt
+          xxd -s 0x1DA20 -l 64 xxqg_original >> /tmp/out.txt
+          otool -tV -p "_isHUDEnabled" xxqg_original >> /tmp/out.txt
+          cat /tmp/out.txt
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: disasm
+          path: /tmp/out.txt
