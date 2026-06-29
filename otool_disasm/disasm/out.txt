@@ -1,0 +1,29 @@
+=== setHUDEnabled: (0x1DD98) ===
+xxqg_original:
+(__TEXT,__text) section
+Can't find -p symbol: _setHUDEnabled
+
+=== setHUDEnabled trampoline (0x866B4) ===
+000866b4: e003 02aa b85d fe17 ef3b b66d ed33 016d  .....]...;.m.3.m
+000866c4: eb2b 026d e923 036d fc6f 04a9 fa67 05a9  .+.m.#.m.o...g..
+000866d4: f85f 06a9 f657 07a9 f44f 08a9 fd7b 09a9  ._...W...O...{..
+000866e4: fd43 0291 ff07 40d1 ff43 17d1 f303 00aa  .C....@..C......
+
+=== tapMainButton: (0x9BB24) ===
+xxqg_original:
+(__TEXT,__text) section
+Can't find -p symbol: _tapMainButton
+
+=== setupAndNotifyToggle (0x86288) ===
+xxqg_original:
+(__TEXT,__text) section
+Can't find -p symbol: _setupAndNotifyToggle
+
+=== isHUDEnabled getter (0x1DA20) ===
+0001da20: fc6f bda9 f44f 01a9 fd7b 02a9 fd83 0091  .o...O...{......
+0001da30: ffc3 11d1 281c 00f0 08a9 40f9 0801 40f9  ....(.....@...@.
+0001da40: a883 1df8 c01a 0090 0020 2791 e735 0294  ......... '..5..
+0001da50: a001 00b4 0000 8052 a883 5df8 291c 00f0  .......R..].)...
+xxqg_original:
+(__TEXT,__text) section
+Can't find -p symbol: _isHUDEnabled

@@ -1,0 +1,13 @@
+
+    方案 2 步骤：
+
+
+    1. 装 mitmproxy:  pip install mitmproxy
+
+    2. 启动拦截:     mitmdump -s eyblock.py -p 8888
+
+    3. 手机 WiFi → HTTP代理 → 手动
+       服务器: 你电脑的局域网IP
+       端口: 8888
+
+    4. 安装 patched IPA → 打开 app → 网络请求被拦截 → 返回假激活

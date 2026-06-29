@@ -1,4 +1,4 @@
-name: Disassemble by address
+name: Disassemble ARM64 by Python
 on: [workflow_dispatch]
 jobs:
   dump:
@@ -6,19 +6,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Disassemble tapMainButton
+      - name: Install capstone
+        run: pip3 install capstone
+      
+      - name: Disassemble key methods
         run: |
-          echo "=== tapMainButton: (0x9BB24-0x9BCE4) ===" > /tmp/out.txt
-          llvm-objdump -d --start-address=0x10009BB24 --stop-address=0x10009BCE4 xxqg_original >> /tmp/out.txt 2>&1
-          echo "" >> /tmp/out.txt
-          echo "=== setHUDEnabled (0x1DD98-0x1E000) ===" >> /tmp/out.txt
-          llvm-objdump -d --start-address=0x10001DD98 --stop-address=0x10001E000 xxqg_original >> /tmp/out.txt 2>&1
-          echo "" >> /tmp/out.txt
-          echo "=== setupAndNotifyToggle (0x86288-0x86408) ===" >> /tmp/out.txt
-          llvm-objdump -d --start-address=0x100086288 --stop-address=0x100086408 xxqg_original >> /tmp/out.txt 2>&1
-          echo "" >> /tmp/out.txt
-          echo "=== HUDRootViewController.viewDidLoad (0x1F408-0x1F7A4) ===" >> /tmp/out.txt
-          llvm-objdump -d --start-address=0x10001F408 --stop-address=0x10001F7A4 xxqg_original >> /tmp/out.txt 2>&1
+          python3 -c "
+          from capstone import *
+          import struct
+
+          with open('xxqg_original','rb') as f:
+              data = f.read()
+
+          md = Cs(CS_ARCH_ARM64, CS_MODE_ARM)
+          md.detail = True
+
+          def disasm_range(start, end, label):
+              print(f'=== {label} (0x{start:X}-0x{end:X}) ===')
+              code = data[start:end]
+              for insn in md.disasm(code, 0x100000000 + start):
+                  imm_hex = ''
+                  if insn.group(CS_GRP_JUMP) or insn.group(CS_GRP_CALL) or insn.group(CS_GRP_BRANCH_RELATIVE):
+                      for op in insn.operands:
+                          if op.type == ARM64_OP_IMM:
+                              target = insn.address + op.imm
+                              imm_hex = f' ; ->0x{target:X}'
+                  print(f'  0x{insn.address:X}: {insn.bytes.hex(\" \")}  {insn.mnemonic} {insn.op_str}{imm_hex}')
+              print()
+
+          disasm_range(0x9BB24, 0x9BCE4, 'tapMainButton:')
+          disasm_range(0x1DD98, 0x1E070, 'setHUDEnabled:')
+          disasm_range(0x86288, 0x86408, 'setupAndNotifyToggle')
+          " > /tmp/out.txt
           cat /tmp/out.txt
       
       - uses: actions/upload-artifact@v4
