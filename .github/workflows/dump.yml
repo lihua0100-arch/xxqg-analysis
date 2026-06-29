@@ -1,0 +1,41 @@
+name: Dump ObjC Methods (学习强国)
+on: [workflow_dispatch]
+jobs:
+  dump:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Dump all ObjC classes and methods
+        run: otool -oV xxqg > /tmp/all.txt
+      
+      - name: Extract RootViewController + HUDRootViewController + setHUDEnabled chain
+        run: |
+          echo "=== RootViewController ===" >> /tmp/out.txt
+          awk '/^RootViewController$/,/^$/' /tmp/all.txt >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== HUDRootViewController ===" >> /tmp/out.txt
+          awk '/^HUDRootViewController$/,/^$/' /tmp/all.txt >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== ImGuiHudView ===" >> /tmp/out.txt
+          awk '/^ImGuiHudView$/,/^$/' /tmp/all.txt >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== HUDMainApplicationDelegate ===" >> /tmp/out.txt
+          awk '/^HUDMainApplicationDelegate$/,/^$/' /tmp/all.txt >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== MainApplicationDelegate ===" >> /tmp/out.txt
+          awk '/^MainApplicationDelegate$/,/^$/' /tmp/all.txt >> /tmp/out.txt
+          echo "" >> /tmp/out.txt
+          echo "=== ALL CLASS NAMES ===" >> /tmp/out.txt
+          grep '^[A-Z]' /tmp/all.txt | head -50 >> /tmp/out.txt
+          cat /tmp/out.txt
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: objc-methods
+          path: /tmp/out.txt
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-dump
+          path: /tmp/all.txt

@@ -1,0 +1,4 @@
+_unpacked/
+_dylib_test/
+*.ipa
+__pycache__/
