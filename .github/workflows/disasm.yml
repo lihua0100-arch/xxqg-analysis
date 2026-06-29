@@ -26,11 +26,14 @@ jobs:
               code = data[start:end]
               for insn in md.disasm(code, 0x100000000 + start):
                   imm_hex = ''
-                  if insn.group(CS_GRP_JUMP) or insn.group(CS_GRP_CALL) or insn.group(CS_GRP_BRANCH_RELATIVE):
-                      for op in insn.operands:
-                          if op.type == ARM64_OP_IMM:
-                              target = insn.address + op.imm
-                              imm_hex = f' ; ->0x{target:X}'
+                  try:
+                      if insn.group(CS_GRP_JUMP) or insn.group(CS_GRP_CALL) or insn.group(CS_GRP_BRANCH_RELATIVE):
+                          for op in insn.operands:
+                              if op.type == 2:  # ARM64_OP_IMM
+                                  target = insn.address + op.imm
+                                  imm_hex = f' ; ->0x{target:X}'
+                  except:
+                      pass
                   print(f'  0x{insn.address:X}: {insn.bytes.hex(\" \")}  {insn.mnemonic} {insn.op_str}{imm_hex}')
               print()
 
