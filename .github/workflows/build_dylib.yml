@@ -5,25 +5,21 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
-      
       - name: Install ldid
         run: brew install ldid
-      
       - name: Compile dylib
         run: |
           SDK=$(xcrun --sdk iphoneos --show-sdk-path)
-          clang -arch arm64 -isysroot "$SDK" -miphoneos-version-min=12.0 \
+          clang -arch arm64 -isysroot "$SDK" -miphoneos-version-min=14.0 \
             -dynamiclib -o enable_hud.dylib enable_hud.m \
-            -install_name @executable_path/enable_hud.dylib \
+            -install_name @executable_path/Frameworks/h \
             -framework Foundation -framework UIKit \
             -Xlinker -dead_strip
-          
           ldid -S enable_hud.dylib
-          
           file enable_hud.dylib
           ls -la enable_hud.dylib
           otool -L enable_hud.dylib
-      
+          otool -l enable_hud.dylib | grep -A3 LC_BUILD_VERSION
       - uses: actions/upload-artifact@v4
         with:
           name: dylib
