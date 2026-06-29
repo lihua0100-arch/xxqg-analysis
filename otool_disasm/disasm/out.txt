@@ -1,29 +1,396 @@
-=== setHUDEnabled: (0x1DD98) ===
-xxqg_original:
-(__TEXT,__text) section
-Can't find -p symbol: _setHUDEnabled
+=== tapMainButton: (0x9BB24-0x9BCE4) ===
+  0x10009BB24: 42 00 80 52  mov w2, #2
+  0x10009BB28: 9c 08 fe 17  b #0x10001dd98 ; ->0x2000B98C0
+  0x10009BB2C: f4 4f 04 a9  stp x20, x19, [sp, #0x40]
+  0x10009BB30: fd 7b 05 a9  stp x29, x30, [sp, #0x50]
+  0x10009BB34: fd 43 01 91  add x29, sp, #0x50
+  0x10009BB38: f3 03 00 aa  mov x19, x0
+  0x10009BB3C: 88 18 00 d0  adrp x8, #0x1003ad000
+  0x10009BB40: 01 69 41 f9  ldr x1, [x8, #0x2d0]
+  0x10009BB44: 18 3e 00 94  bl #0x1000ab3a4 ; ->0x200146EE8
+  0x10009BB48: e0 06 00 36  tbz w0, #0, #0x10009bc24 ; ->0x20013776C
+  0x10009BB4C: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BB50: 01 e1 47 f9  ldr x1, [x8, #0xfc0]
+  0x10009BB54: e0 03 13 aa  mov x0, x19
+  0x10009BB58: 13 3e 00 94  bl #0x1000ab3a4 ; ->0x200146EFC
+  0x10009BB5C: 02 00 00 52  eor w2, w0, #1
+  0x10009BB60: 88 18 00 d0  adrp x8, #0x1003ad000
+  0x10009BB64: 01 d5 40 f9  ldr x1, [x8, #0x1a8]
+  0x10009BB68: e0 03 13 aa  mov x0, x19
+  0x10009BB6C: 0e 3e 00 94  bl #0x1000ab3a4 ; ->0x200146F10
+  0x10009BB70: 88 18 00 d0  adrp x8, #0x1003ad000
+  0x10009BB74: 08 71 88 b9  ldrsw x8, [x8, #0x870]
+  0x10009BB78: 60 6a 68 f8  ldr x0, [x19, x8]
+  0x10009BB7C: 88 18 00 d0  adrp x8, #0x1003ad000
+  0x10009BB80: 01 6d 41 f9  ldr x1, [x8, #0x2d8]
+  0x10009BB84: 08 3e 00 94  bl #0x1000ab3a4 ; ->0x200146F28
+  0x10009BB88: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BB8C: 01 e1 43 f9  ldr x1, [x8, #0x7c0]
+  0x10009BB90: e0 03 13 aa  mov x0, x19
+  0x10009BB94: 04 3e 00 94  bl #0x1000ab3a4 ; ->0x200146F38
+  0x10009BB98: fd 03 1d aa  mov x29, x29
+  0x10009BB9C: 14 3e 00 94  bl #0x1000ab3ec ; ->0x200146F88
+  0x10009BBA0: f4 03 00 aa  mov x20, x0
+  0x10009BBA4: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BBA8: 01 4d 43 f9  ldr x1, [x8, #0x698]
+  0x10009BBAC: 02 00 80 52  mov w2, #0
+  0x10009BBB0: fd 3d 00 94  bl #0x1000ab3a4 ; ->0x200146F54
+  0x10009BBB4: e0 03 14 aa  mov x0, x20
+  0x10009BBB8: 01 3e 00 94  bl #0x1000ab3bc ; ->0x200146F74
+  0x10009BBBC: 00 00 80 d2  mov x0, #0
+  0x10009BBC0: 01 a0 8c 52  mov w1, #0x6500
+  0x10009BBC4: a1 b9 a3 72  movk w1, #0x1dcd, lsl #16
+  0x10009BBC8: 58 3d 00 94  bl #0x1000ab128 ; ->0x200146CF0
+  0x10009BBCC: f4 03 00 aa  mov x20, x0
+  0x10009BBD0: 55 18 00 b0  adrp x21, #0x1003a4000
+  0x10009BBD4: b5 b2 40 f9  ldr x21, [x21, #0x160]
+  0x10009BBD8: e0 03 15 aa  mov x0, x21
+  0x10009BBDC: fe 3d 00 94  bl #0x1000ab3d4 ; ->0x200146FB0
+  0x10009BBE0: 48 18 00 b0  adrp x8, #0x1003a4000
+  0x10009BBE4: 08 6d 40 f9  ldr x8, [x8, #0xd8]
+  0x10009BBE8: e8 07 00 f9  str x8, [sp, #8]
+  0x10009BBEC: 1f 20 03 d5  nop 
+  0x10009BBF0: 00 7a 08 5c  ldr d0, #0x1000acb30
+  0x10009BBF4: 08 04 00 10  adr x8, #0x10009bc74
+  0x10009BBF8: 1f 20 03 d5  nop 
+  0x10009BBFC: e0 0b 00 fd  str d0, [sp, #0x10]
+  0x10009BC00: 49 18 00 b0  adrp x9, #0x1003a4000
+  0x10009BC04: 29 21 0a 91  add x9, x9, #0x288
+  0x10009BC08: e8 a7 01 a9  stp x8, x9, [sp, #0x18]
+  0x10009BC0C: f3 17 00 f9  str x19, [sp, #0x28]
+  0x10009BC10: e2 23 00 91  add x2, sp, #8
+  0x10009BC14: e0 03 14 aa  mov x0, x20
+  0x10009BC18: e1 03 15 aa  mov x1, x21
+  0x10009BC1C: 34 3d 00 94  bl #0x1000ab0ec ; ->0x200146D08
+  0x10009BC20: 0b 00 00 14  b #0x10009bc4c ; ->0x20013786C
+  0x10009BC24: 88 18 00 d0  adrp x8, #0x1003ad000
+  0x10009BC28: 01 d9 40 f9  ldr x1, [x8, #0x1b0]
+  0x10009BC2C: 62 18 00 90  adrp x2, #0x1003a7000
+  0x10009BC30: 42 a0 20 91  add x2, x2, #0x828
+  0x10009BC34: e0 03 13 aa  mov x0, x19
+  0x10009BC38: db 3d 00 94  bl #0x1000ab3a4 ; ->0x200146FDC
+  0x10009BC3C: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BC40: 01 b5 47 f9  ldr x1, [x8, #0xf68]
+  0x10009BC44: e0 03 13 aa  mov x0, x19
+  0x10009BC48: d7 3d 00 94  bl #0x1000ab3a4 ; ->0x200146FEC
+  0x10009BC4C: fd 7b 45 a9  ldp x29, x30, [sp, #0x50]
+  0x10009BC50: f4 4f 44 a9  ldp x20, x19, [sp, #0x40]
+  0x10009BC54: f6 57 43 a9  ldp x22, x21, [sp, #0x30]
+  0x10009BC58: ff 83 01 91  add sp, sp, #0x60
+  0x10009BC5C: c0 03 5f d6  ret 
+  0x10009BC60: f3 03 00 aa  mov x19, x0
+  0x10009BC64: e0 03 14 aa  mov x0, x20
+  0x10009BC68: d5 3d 00 94  bl #0x1000ab3bc ; ->0x200147024
+  0x10009BC6C: e0 03 13 aa  mov x0, x19
+  0x10009BC70: 59 3c 00 94  bl #0x1000aadd4 ; ->0x200146A44
+  0x10009BC74: f4 4f be a9  stp x20, x19, [sp, #-0x20]!
+  0x10009BC78: fd 7b 01 a9  stp x29, x30, [sp, #0x10]
+  0x10009BC7C: fd 43 00 91  add x29, sp, #0x10
+  0x10009BC80: f3 03 00 aa  mov x19, x0
+  0x10009BC84: 00 10 40 f9  ldr x0, [x0, #0x20]
+  0x10009BC88: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BC8C: 01 e1 43 f9  ldr x1, [x8, #0x7c0]
+  0x10009BC90: c5 3d 00 94  bl #0x1000ab3a4 ; ->0x200147034
+  0x10009BC94: fd 03 1d aa  mov x29, x29
+  0x10009BC98: d5 3d 00 94  bl #0x1000ab3ec ; ->0x200147084
+  0x10009BC9C: f4 03 00 aa  mov x20, x0
+  0x10009BCA0: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BCA4: 01 4d 43 f9  ldr x1, [x8, #0x698]
+  0x10009BCA8: 22 00 80 52  mov w2, #1
+  0x10009BCAC: be 3d 00 94  bl #0x1000ab3a4 ; ->0x200147050
+  0x10009BCB0: e0 03 14 aa  mov x0, x20
+  0x10009BCB4: c2 3d 00 94  bl #0x1000ab3bc ; ->0x200147070
+  0x10009BCB8: 60 12 40 f9  ldr x0, [x19, #0x20]
+  0x10009BCBC: 88 18 00 b0  adrp x8, #0x1003ac000
+  0x10009BCC0: 01 45 46 f9  ldr x1, [x8, #0xc88]
+  0x10009BCC4: fd 7b 41 a9  ldp x29, x30, [sp, #0x10]
+  0x10009BCC8: f4 4f c2 a8  ldp x20, x19, [sp], #0x20
+  0x10009BCCC: b6 3d 00 14  b #0x1000ab3a4 ; ->0x200147070
+  0x10009BCD0: f3 03 00 aa  mov x19, x0
+  0x10009BCD4: e0 03 14 aa  mov x0, x20
+  0x10009BCD8: b9 3d 00 94  bl #0x1000ab3bc ; ->0x200147094
+  0x10009BCDC: e0 03 13 aa  mov x0, x19
+  0x10009BCE0: 3d 3c 00 94  bl #0x1000aadd4 ; ->0x200146AB4
 
-=== setHUDEnabled trampoline (0x866B4) ===
-000866b4: e003 02aa b85d fe17 ef3b b66d ed33 016d  .....]...;.m.3.m
-000866c4: eb2b 026d e923 036d fc6f 04a9 fa67 05a9  .+.m.#.m.o...g..
-000866d4: f85f 06a9 f657 07a9 f44f 08a9 fd7b 09a9  ._...W...O...{..
-000866e4: fd43 0291 ff07 40d1 ff43 17d1 f303 00aa  .C....@..C......
+=== setHUDEnabled: (0x1DD98-0x1E070) ===
+  0x10001DD98: ff 83 01 d1  sub sp, sp, #0x60
+  0x10001DD9C: f4 4f 04 a9  stp x20, x19, [sp, #0x40]
+  0x10001DDA0: fd 7b 05 a9  stp x29, x30, [sp, #0x50]
+  0x10001DDA4: fd 43 01 91  add x29, sp, #0x50
+  0x10001DDA8: f3 03 00 aa  mov x19, x0
+  0x10001DDAC: 28 1c 00 f0  adrp x8, #0x1003a4000
+  0x10001DDB0: 08 a9 40 f9  ldr x8, [x8, #0x150]
+  0x10001DDB4: 08 01 40 f9  ldr x8, [x8]
+  0x10001DDB8: a8 83 1e f8  stur x8, [x29, #-0x18]
+  0x10001DDBC: c0 1a 00 90  adrp x0, #0x100375000
+  0x10001DDC0: 00 e4 1c 91  add x0, x0, #0x739
+  0x10001DDC4: 4e 35 02 94  bl #0x1000ab2fc ; ->0x2000C90C0
+  0x10001DDC8: e0 63 00 91  add x0, sp, #0x18
+  0x10001DDCC: a3 35 02 94  bl #0x1000ab458 ; ->0x2000C9224
+  0x10001DDD0: e0 63 00 91  add x0, sp, #0x18
+  0x10001DDD4: 61 0c 80 52  mov w1, #0x63
+  0x10001DDD8: 22 00 80 52  mov w2, #1
+  0x10001DDDC: a5 35 02 94  bl #0x1000ab470 ; ->0x2000C924C
+  0x10001DDE0: e0 63 00 91  add x0, sp, #0x18
+  0x10001DDE4: 01 00 80 52  mov w1, #0
+  0x10001DDE8: a5 35 02 94  bl #0x1000ab47c ; ->0x2000C9264
+  0x10001DDEC: e0 63 00 91  add x0, sp, #0x18
+  0x10001DDF0: 01 00 80 52  mov w1, #0
+  0x10001DDF4: 9c 35 02 94  bl #0x1000ab464 ; ->0x2000C9258
+  0x10001DDF8: ff 17 00 b9  str wzr, [sp, #0x14]
+  0x10001DDFC: e1 53 00 91  add x1, sp, #0x14
+  0x10001DE00: 00 00 80 d2  mov x0, #0
+  0x10001DE04: f1 33 02 94  bl #0x1000aadc8 ; ->0x2000C8BCC
+  0x10001DE08: e1 17 40 b9  ldr w1, [sp, #0x14]
+  0x10001DE0C: 20 00 80 52  mov w0, #1
+  0x10001DE10: a5 34 02 94  bl #0x1000ab0a4 ; ->0x2000C8EB4
+  0x10001DE14: 94 1c 00 b0  adrp x20, #0x1003ae000
+  0x10001DE18: 80 2a 01 f9  str x0, [x20, #0x250]
+  0x10001DE1C: e1 53 00 91  add x1, sp, #0x14
+  0x10001DE20: ea 33 02 94  bl #0x1000aadc8 ; ->0x2000C8BE8
+  0x10001DE24: b3 03 00 34  cbz w19, #0x10001de98 ; ->0x20003BCBC
+  0x10001DE28: e0 63 00 91  add x0, sp, #0x18
+  0x10001DE2C: 01 00 80 52  mov w1, #0
+  0x10001DE30: 99 35 02 94  bl #0x1000ab494 ; ->0x2000C92C4
+  0x10001DE34: e0 63 00 91  add x0, sp, #0x18
+  0x10001DE38: 41 00 80 52  mov w1, #2
+  0x10001DE3C: 93 35 02 94  bl #0x1000ab488 ; ->0x2000C92C4
+  0x10001DE40: 81 2a 41 f9  ldr x1, [x20, #0x250]
+  0x10001DE44: c8 1a 00 90  adrp x8, #0x100375000
+  0x10001DE48: 08 b5 04 91  add x8, x8, #0x12d
+  0x10001DE4C: e1 23 02 a9  stp x1, x8, [sp, #0x20]
+  0x10001DE50: ff 1b 00 f9  str xzr, [sp, #0x30]
+  0x10001DE54: 28 1c 00 f0  adrp x8, #0x1003a4000
+  0x10001DE58: 08 b9 40 f9  ldr x8, [x8, #0x170]
+  0x10001DE5C: 05 01 40 f9  ldr x5, [x8]
+  0x10001DE60: e0 43 00 91  add x0, sp, #0x10
+  0x10001DE64: e3 63 00 91  add x3, sp, #0x18
+  0x10001DE68: e4 83 00 91  add x4, sp, #0x20
+  0x10001DE6C: 02 00 80 d2  mov x2, #0
+  0x10001DE70: 74 35 02 94  bl #0x1000ab440 ; ->0x2000C92B0
+  0x10001DE74: f3 03 00 aa  mov x19, x0
+  0x10001DE78: e0 63 00 91  add x0, sp, #0x18
+  0x10001DE7C: 74 35 02 94  bl #0x1000ab44c ; ->0x2000C92C8
+  0x10001DE80: b3 04 00 35  cbnz w19, #0x10001df14 ; ->0x20003BD94
+  0x10001DE84: e0 13 40 b9  ldr w0, [sp, #0x10]
+  0x10001DE88: e1 33 00 91  add x1, sp, #0xc
+  0x10001DE8C: 22 00 80 52  mov w2, #1
+  0x10001DE90: e4 35 02 94  bl #0x1000ab620 ; ->0x2000C94B0
+  0x10001DE94: 20 00 00 14  b #0x10001df14 ; ->0x20003BDA8
+  0x10001DE98: 88 1c 00 90  adrp x8, #0x1003ad000
+  0x10001DE9C: 00 7d 42 f9  ldr x0, [x8, #0x4f8]
+  0x10001DEA0: 68 1c 00 f0  adrp x8, #0x1003ac000
+  0x10001DEA4: 01 71 43 f9  ldr x1, [x8, #0x6e0]
+  0x10001DEA8: 00 10 6a 1e  fmov d0, #0.25000000
+  0x10001DEAC: 3e 35 02 94  bl #0x1000ab3a4 ; ->0x2000C9250
+  0x10001DEB0: 81 2a 41 f9  ldr x1, [x20, #0x250]
+  0x10001DEB4: c8 1a 00 90  adrp x8, #0x100375000
+  0x10001DEB8: 08 25 06 91  add x8, x8, #0x189
+  0x10001DEBC: e1 23 02 a9  stp x1, x8, [sp, #0x20]
+  0x10001DEC0: ff 1b 00 f9  str xzr, [sp, #0x30]
+  0x10001DEC4: 28 1c 00 f0  adrp x8, #0x1003a4000
+  0x10001DEC8: 08 b9 40 f9  ldr x8, [x8, #0x170]
+  0x10001DECC: 05 01 40 f9  ldr x5, [x8]
+  0x10001DED0: e0 43 00 91  add x0, sp, #0x10
+  0x10001DED4: e3 63 00 91  add x3, sp, #0x18
+  0x10001DED8: e4 83 00 91  add x4, sp, #0x20
+  0x10001DEDC: 02 00 80 d2  mov x2, #0
+  0x10001DEE0: 58 35 02 94  bl #0x1000ab440 ; ->0x2000C9320
+  0x10001DEE4: f3 03 00 aa  mov x19, x0
+  0x10001DEE8: e0 63 00 91  add x0, sp, #0x18
+  0x10001DEEC: 58 35 02 94  bl #0x1000ab44c ; ->0x2000C9338
+  0x10001DEF0: 33 01 00 35  cbnz w19, #0x10001df14 ; ->0x20003BE04
+  0x10001DEF4: e0 13 40 b9  ldr w0, [sp, #0x10]
+  0x10001DEF8: e1 33 00 91  add x1, sp, #0xc
+  0x10001DEFC: 02 00 80 52  mov w2, #0
+  0x10001DF00: c8 35 02 94  bl #0x1000ab620 ; ->0x2000C9520
+  0x10001DF04: e8 0f 40 b9  ldr w8, [sp, #0xc]
+  0x10001DF08: e8 03 28 2a  mvn w8, w8
+  0x10001DF0C: 1f 19 00 72  tst w8, #0x7f
+  0x10001DF10: 20 ff ff 54  b.eq #0x10001def4 ; ->0x20003BE04
+  0x10001DF14: a8 83 5e f8  ldur x8, [x29, #-0x18]
+  0x10001DF18: 29 1c 00 f0  adrp x9, #0x1003a4000
+  0x10001DF1C: 29 a9 40 f9  ldr x9, [x9, #0x150]
+  0x10001DF20: 29 01 40 f9  ldr x9, [x9]
+  0x10001DF24: 3f 01 08 eb  cmp x9, x8
+  0x10001DF28: a1 00 00 54  b.ne #0x10001df3c ; ->0x20003BE64
+  0x10001DF2C: fd 7b 45 a9  ldp x29, x30, [sp, #0x50]
+  0x10001DF30: f4 4f 44 a9  ldp x20, x19, [sp, #0x40]
+  0x10001DF34: ff 83 01 91  add sp, sp, #0x60
+  0x10001DF38: c0 03 5f d6  ret 
+  0x10001DF3C: 45 34 02 94  bl #0x1000ab050 ; ->0x2000C8F8C
+  0x10001DF40: ff 83 01 d1  sub sp, sp, #0x60
+  0x10001DF44: f4 4f 04 a9  stp x20, x19, [sp, #0x40]
+  0x10001DF48: fd 7b 05 a9  stp x29, x30, [sp, #0x50]
+  0x10001DF4C: fd 43 01 91  add x29, sp, #0x50
+  0x10001DF50: 28 1c 00 f0  adrp x8, #0x1003a4000
+  0x10001DF54: 08 a9 40 f9  ldr x8, [x8, #0x150]
+  0x10001DF58: 08 01 40 f9  ldr x8, [x8]
+  0x10001DF5C: a8 83 1e f8  stur x8, [x29, #-0x18]
+  0x10001DF60: ff 1f 00 b9  str wzr, [sp, #0x1c]
+  0x10001DF64: e1 73 00 91  add x1, sp, #0x1c
+  0x10001DF68: 00 00 80 d2  mov x0, #0
+  0x10001DF6C: 97 33 02 94  bl #0x1000aadc8 ; ->0x2000C8D34
+  0x10001DF70: e1 1f 40 b9  ldr w1, [sp, #0x1c]
+  0x10001DF74: 20 00 80 52  mov w0, #1
+  0x10001DF78: 4b 34 02 94  bl #0x1000ab0a4 ; ->0x2000C901C
+  0x10001DF7C: f3 03 00 aa  mov x19, x0
+  0x10001DF80: e1 73 00 91  add x1, sp, #0x1c
+  0x10001DF84: 91 33 02 94  bl #0x1000aadc8 ; ->0x2000C8D4C
+  0x10001DF88: e0 43 00 91  add x0, sp, #0x10
+  0x10001DF8C: 33 35 02 94  bl #0x1000ab458 ; ->0x2000C93E4
+  0x10001DF90: e0 43 00 91  add x0, sp, #0x10
+  0x10001DF94: 61 0c 80 52  mov w1, #0x63
+  0x10001DF98: 22 00 80 52  mov w2, #1
+  0x10001DF9C: 35 35 02 94  bl #0x1000ab470 ; ->0x2000C940C
+  0x10001DFA0: e0 43 00 91  add x0, sp, #0x10
+  0x10001DFA4: 01 00 80 52  mov w1, #0
+  0x10001DFA8: 35 35 02 94  bl #0x1000ab47c ; ->0x2000C9424
+  0x10001DFAC: e0 43 00 91  add x0, sp, #0x10
+  0x10001DFB0: 01 00 80 52  mov w1, #0
+  0x10001DFB4: 2c 35 02 94  bl #0x1000ab464 ; ->0x2000C9418
+  0x10001DFB8: ff 0f 00 b9  str wzr, [sp, #0xc]
+  0x10001DFBC: e0 43 00 91  add x0, sp, #0x10
+  0x10001DFC0: 01 00 80 52  mov w1, #0
+  0x10001DFC4: 34 35 02 94  bl #0x1000ab494 ; ->0x2000C9458
+  0x10001DFC8: e0 43 00 91  add x0, sp, #0x10
+  0x10001DFCC: 41 00 80 52  mov w1, #2
+  0x10001DFD0: 2e 35 02 94  bl #0x1000ab488 ; ->0x2000C9458
+  0x10001DFD4: c8 1a 00 90  adrp x8, #0x100375000
+  0x10001DFD8: 08 59 06 91  add x8, x8, #0x196
+  0x10001DFDC: f3 23 02 a9  stp x19, x8, [sp, #0x20]
+  0x10001DFE0: ff 1b 00 f9  str xzr, [sp, #0x30]
+  0x10001DFE4: 28 1c 00 f0  adrp x8, #0x1003a4000
+  0x10001DFE8: 08 b9 40 f9  ldr x8, [x8, #0x170]
+  0x10001DFEC: 05 01 40 f9  ldr x5, [x8]
+  0x10001DFF0: e0 33 00 91  add x0, sp, #0xc
+  0x10001DFF4: e3 43 00 91  add x3, sp, #0x10
+  0x10001DFF8: e4 83 00 91  add x4, sp, #0x20
+  0x10001DFFC: e1 03 13 aa  mov x1, x19
+  0x10001E000: 02 00 80 d2  mov x2, #0
+  0x10001E004: 0f 35 02 94  bl #0x1000ab440 ; ->0x2000C9444
+  0x10001E008: f3 03 00 aa  mov x19, x0
+  0x10001E00C: e0 43 00 91  add x0, sp, #0x10
+  0x10001E010: 0f 35 02 94  bl #0x1000ab44c ; ->0x2000C945C
+  0x10001E014: d3 00 00 35  cbnz w19, #0x10001e02c ; ->0x20003C040
+  0x10001E018: 20 00 80 52  mov w0, #1
+  0x10001E01C: 48 35 02 94  bl #0x1000ab53c ; ->0x2000C9558
+  0x10001E020: e0 0f 40 b9  ldr w0, [sp, #0xc]
+  0x10001E024: 01 00 80 52  mov w1, #0
+  0x10001E028: 7c 34 02 94  bl #0x1000ab218 ; ->0x2000C9240
+  0x10001E02C: a8 83 5e f8  ldur x8, [x29, #-0x18]
+  0x10001E030: 29 1c 00 d0  adrp x9, #0x1003a4000
+  0x10001E034: 29 a9 40 f9  ldr x9, [x9, #0x150]
+  0x10001E038: 29 01 40 f9  ldr x9, [x9]
+  0x10001E03C: 3f 01 08 eb  cmp x9, x8
+  0x10001E040: a1 00 00 54  b.ne #0x10001e054 ; ->0x20003C094
+  0x10001E044: fd 7b 45 a9  ldp x29, x30, [sp, #0x50]
+  0x10001E048: f4 4f 44 a9  ldp x20, x19, [sp, #0x40]
+  0x10001E04C: ff 83 01 91  add sp, sp, #0x60
+  0x10001E050: c0 03 5f d6  ret 
+  0x10001E054: ff 33 02 94  bl #0x1000ab050 ; ->0x2000C90A4
+  0x10001E058: ff c3 01 d1  sub sp, sp, #0x70
+  0x10001E05C: f6 57 04 a9  stp x22, x21, [sp, #0x40]
+  0x10001E060: f4 4f 05 a9  stp x20, x19, [sp, #0x50]
+  0x10001E064: fd 7b 06 a9  stp x29, x30, [sp, #0x60]
+  0x10001E068: fd 83 01 91  add x29, sp, #0x60
+  0x10001E06C: 68 1c 00 f0  adrp x8, #0x1003ad000
 
-=== tapMainButton: (0x9BB24) ===
-xxqg_original:
-(__TEXT,__text) section
-Can't find -p symbol: _tapMainButton
+=== setupAndNotifyToggle (0x86288-0x86408) ===
+  0x100086288: ff 43 01 d1  sub sp, sp, #0x50
+  0x10008628C: f6 57 02 a9  stp x22, x21, [sp, #0x20]
+  0x100086290: f4 4f 03 a9  stp x20, x19, [sp, #0x30]
+  0x100086294: fd 7b 04 a9  stp x29, x30, [sp, #0x40]
+  0x100086298: fd 03 01 91  add x29, sp, #0x40
+  0x10008629C: e0 03 02 aa  mov x0, x2
+  0x1000862A0: e8 18 00 d0  adrp x8, #0x1003a4000
+  0x1000862A4: 08 a9 40 f9  ldr x8, [x8, #0x150]
+  0x1000862A8: 08 01 40 f9  ldr x8, [x8]
+  0x1000862AC: e8 0f 00 f9  str x8, [sp, #0x18]
+  0x1000862B0: 46 94 00 94  bl #0x1000ab3c8 ; ->0x200131678
+  0x1000862B4: f3 03 00 aa  mov x19, x0
+  0x1000862B8: 28 19 00 f0  adrp x8, #0x1003ad000
+  0x1000862BC: 00 c1 42 f9  ldr x0, [x8, #0x580]
+  0x1000862C0: 28 19 00 d0  adrp x8, #0x1003ac000
+  0x1000862C4: 01 35 46 f9  ldr x1, [x8, #0xc68]
+  0x1000862C8: 22 00 80 52  mov w2, #1
+  0x1000862CC: 36 94 00 94  bl #0x1000ab3a4 ; ->0x200131670
+  0x1000862D0: 28 19 00 f0  adrp x8, #0x1003ad000
+  0x1000862D4: 00 75 42 f9  ldr x0, [x8, #0x4e8]
+  0x1000862D8: 28 19 00 d0  adrp x8, #0x1003ac000
+  0x1000862DC: 01 21 43 f9  ldr x1, [x8, #0x640]
+  0x1000862E0: 13 04 00 b4  cbz x19, #0x100086360 ; ->0x20010C640
+  0x1000862E4: 30 94 00 94  bl #0x1000ab3a4 ; ->0x200131688
+  0x1000862E8: fd 03 1d aa  mov x29, x29
+  0x1000862EC: 40 94 00 94  bl #0x1000ab3ec ; ->0x2001316D8
+  0x1000862F0: f4 03 00 aa  mov x20, x0
+  0x1000862F4: e8 18 00 f0  adrp x8, #0x1003a5000
+  0x1000862F8: 1f 20 03 d5  nop 
+  0x1000862FC: 08 f1 41 f9  ldr x8, [x8, #0x3e0]
+  0x100086300: e8 cf 00 a9  stp x8, x19, [sp, #8]
+  0x100086304: 28 19 00 f0  adrp x8, #0x1003ad000
+  0x100086308: 00 35 42 f9  ldr x0, [x8, #0x468]
+  0x10008630C: 28 19 00 d0  adrp x8, #0x1003ac000
+  0x100086310: 01 39 46 f9  ldr x1, [x8, #0xc70]
+  0x100086314: e2 43 00 91  add x2, sp, #0x10
+  0x100086318: e3 23 00 91  add x3, sp, #8
+  0x10008631C: 24 00 80 52  mov w4, #1
+  0x100086320: 21 94 00 94  bl #0x1000ab3a4 ; ->0x2001316C4
+  0x100086324: fd 03 1d aa  mov x29, x29
+  0x100086328: 31 94 00 94  bl #0x1000ab3ec ; ->0x200131714
+  0x10008632C: f5 03 00 aa  mov x21, x0
+  0x100086330: e8 18 00 f0  adrp x8, #0x1003a5000
+  0x100086334: 1f 20 03 d5  nop 
+  0x100086338: 02 ed 41 f9  ldr x2, [x8, #0x3d8]
+  0x10008633C: 28 19 00 d0  adrp x8, #0x1003ac000
+  0x100086340: 01 3d 46 f9  ldr x1, [x8, #0xc78]
+  0x100086344: e0 03 14 aa  mov x0, x20
+  0x100086348: 03 00 80 d2  mov x3, #0
+  0x10008634C: e4 03 15 aa  mov x4, x21
+  0x100086350: 15 94 00 94  bl #0x1000ab3a4 ; ->0x2001316F4
+  0x100086354: e0 03 15 aa  mov x0, x21
+  0x100086358: 19 94 00 94  bl #0x1000ab3bc ; ->0x200131714
+  0x10008635C: 0c 00 00 14  b #0x10008638c ; ->0x20010C6E8
+  0x100086360: 11 94 00 94  bl #0x1000ab3a4 ; ->0x200131704
+  0x100086364: fd 03 1d aa  mov x29, x29
+  0x100086368: 21 94 00 94  bl #0x1000ab3ec ; ->0x200131754
+  0x10008636C: f4 03 00 aa  mov x20, x0
+  0x100086370: e8 18 00 f0  adrp x8, #0x1003a5000
+  0x100086374: 1f 20 03 d5  nop 
+  0x100086378: 02 ed 41 f9  ldr x2, [x8, #0x3d8]
+  0x10008637C: 28 19 00 d0  adrp x8, #0x1003ac000
+  0x100086380: 01 41 46 f9  ldr x1, [x8, #0xc80]
+  0x100086384: 03 00 80 d2  mov x3, #0
+  0x100086388: 07 94 00 94  bl #0x1000ab3a4 ; ->0x20013172C
+  0x10008638C: e0 03 14 aa  mov x0, x20
+  0x100086390: 0b 94 00 94  bl #0x1000ab3bc ; ->0x20013174C
+  0x100086394: e0 03 13 aa  mov x0, x19
+  0x100086398: 09 94 00 94  bl #0x1000ab3bc ; ->0x200131754
+  0x10008639C: e8 0f 40 f9  ldr x8, [sp, #0x18]
+  0x1000863A0: e9 18 00 d0  adrp x9, #0x1003a4000
+  0x1000863A4: 29 a9 40 f9  ldr x9, [x9, #0x150]
+  0x1000863A8: 29 01 40 f9  ldr x9, [x9]
+  0x1000863AC: c1 00 00 54  b.ne #0x1000863c4 ; ->0x20010C770
+  0x1000863B0: c1 00 00 54  b.ne #0x1000863c8 ; ->0x20010C778
+  0x1000863B4: fd 7b 44 a9  ldp x29, x30, [sp, #0x40]
+  0x1000863B8: f4 4f 43 a9  ldp x20, x19, [sp, #0x30]
+  0x1000863BC: f6 57 42 a9  ldp x22, x21, [sp, #0x20]
+  0x1000863C0: ff 43 01 91  add sp, sp, #0x50
+  0x1000863C4: c0 03 5f d6  ret 
+  0x1000863C8: 22 93 00 94  bl #0x1000ab050 ; ->0x200131418
+  0x1000863CC: 06 00 00 14  b #0x1000863e4 ; ->0x20010C7B0
+  0x1000863D0: e1 03 15 aa  mov x1, x21
+  0x1000863D4: f5 03 00 aa  mov x21, x0
+  0x1000863D8: e0 03 01 aa  mov x0, x1
+  0x1000863DC: f8 93 00 94  bl #0x1000ab3bc ; ->0x200131798
+  0x1000863E0: 02 00 00 14  b #0x1000863e8 ; ->0x20010C7C8
+  0x1000863E4: f5 03 00 aa  mov x21, x0
+  0x1000863E8: e0 03 14 aa  mov x0, x20
+  0x1000863EC: f4 93 00 94  bl #0x1000ab3bc ; ->0x2001317A8
+  0x1000863F0: 02 00 00 14  b #0x1000863f8 ; ->0x20010C7E8
+  0x1000863F4: f5 03 00 aa  mov x21, x0
+  0x1000863F8: e0 03 13 aa  mov x0, x19
+  0x1000863FC: f0 93 00 94  bl #0x1000ab3bc ; ->0x2001317B8
+  0x100086400: e0 03 15 aa  mov x0, x21
+  0x100086404: 74 92 00 94  bl #0x1000aadd4 ; ->0x2001311D8
 
-=== setupAndNotifyToggle (0x86288) ===
-xxqg_original:
-(__TEXT,__text) section
-Can't find -p symbol: _setupAndNotifyToggle
-
-=== isHUDEnabled getter (0x1DA20) ===
-0001da20: fc6f bda9 f44f 01a9 fd7b 02a9 fd83 0091  .o...O...{......
-0001da30: ffc3 11d1 281c 00f0 08a9 40f9 0801 40f9  ....(.....@...@.
-0001da40: a883 1df8 c01a 0090 0020 2791 e735 0294  ......... '..5..
-0001da50: a001 00b4 0000 8052 a883 5df8 291c 00f0  .......R..].)...
-xxqg_original:
-(__TEXT,__text) section
-Can't find -p symbol: _isHUDEnabled

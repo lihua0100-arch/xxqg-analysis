@@ -1,0 +1,22 @@
+name: Verify ADRP encoding
+on: [workflow_dispatch]
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install capstone
+        run: pip3 install --break-system-packages capstone
+      - name: Test ADRP
+        run: |
+          python3 -c "
+          from capstone import *
+          import struct
+
+          # The patch bytes at 0x9BB24
+          patch = bytes([0xc1,0x16,0x80,0x90, 0x21,0x84,0x3f,0x91, 0x22,0x00,0x80,0x52, 0x9a,0x08,0xfe,0x17])
+          
+          md = Cs(CS_ARCH_ARM64, CS_MODE_ARM)
+          for insn in md.disasm(patch, 0x10009BB24):
+              print(f'0x{insn.address:X}: {insn.bytes.hex()}  {insn.mnemonic} {insn.op_str}')
+          "

@@ -1,0 +1,8 @@
+__objc_selrefs: off=0x3AC098 addr=0x1003AC098
+  [tapMainButton enable method 1] selrefs[547] @VM:0x1003AD1B0 file:0x3AD1B0 ptr:0x100373FF0 -> "showErrorAlert:"
+  [tapMainButton setHUDEnabled:] selrefs[546] @VM:0x1003AD1A8 file:0x3AD1A8 ptr:0x100373FE1 -> "setHUDEnabled:"
+  [tapMainButton isHUDEnabled] selrefs[583] @VM:0x1003AD2D0 file:0x3AD2D0 ptr:0x100374302 -> "performMenuOpenIntegrityChecks"
+  [tapMainButton enable check] selrefs[485] @VM:0x1003ACFC0 file:0x3ACFC0 ptr:0x1003739A3 -> "isHUDEnabled"
+  [tapMainButton enable method 2] selrefs[474] @VM:0x1003ACF68 file:0x3ACF68 ptr:0x1003738B7 -> "updateAuthUI"
+  [tapMainButton disable call1] selrefs[229] @VM:0x1003AC7C0 file:0x3AC7C0 ptr:0x100372161 -> "view"
+  [tapMainButton disable call2] selrefs[192] @VM:0x1003AC698 file:0x3AC698 ptr:0x1003713F0 -> "setUserInteractionEnabled:"

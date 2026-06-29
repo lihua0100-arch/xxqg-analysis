@@ -3,7 +3,7 @@
 """
 import socket, threading, sys, select
 
-FAKE_RESPONSE = b"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 19\r\n\r\n2099-12-31 23:59:59"
+FAKE_RESPONSE = b"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 22\r\n\r\n0\r\n2099-12-31 23:59:59"
 
 TARGET_HOSTS = [b'eydata.net', b't3yanzheng.cn']
 
