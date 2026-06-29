@@ -11,14 +11,18 @@ jobs:
           SDK=$(xcrun --sdk iphoneos --show-sdk-path)
           clang -arch arm64 -isysroot "$SDK" -miphoneos-version-min=10.0 \
             -dynamiclib -o enable_hud.dylib enable_hud.m \
+            -install_name @executable_path/enable_hud.dylib \
             -framework Foundation -framework UIKit
           
-          # Strip and sign placeholder
-          strip -x enable_hud.dylib
-          codesign --remove-signature enable_hud.dylib 2>/dev/null || true
+          # Strip debug symbols only, keep everything else
+          strip -S enable_hud.dylib
           
           file enable_hud.dylib
           ls -la enable_hud.dylib
+          
+          # Verify load commands
+          otool -L enable_hud.dylib
+          otool -l enable_hud.dylib | grep -A2 LC_VERSION_MIN
       
       - uses: actions/upload-artifact@v4
         with:
