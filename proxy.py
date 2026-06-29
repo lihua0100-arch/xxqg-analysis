@@ -2,8 +2,12 @@
 用法: python3 proxy.py [端口]
 """
 import socket, threading, sys, select
+from datetime import datetime, timedelta
 
-FAKE_RESPONSE = b"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 22\r\n\r\n0\r\n2099-12-31 23:59:59"
+def make_response():
+    expire = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S")
+    body = f"0\r\n{expire}".encode()
+    return f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(body)}\r\n\r\n".encode() + body
 
 TARGET_HOSTS = [b'eydata.net', b't3yanzheng.cn']
 
@@ -75,7 +79,7 @@ def handle_client(client_sock, addr):
                 client_sock.sendall(b'HTTP/1.1 502 Bad Gateway\r\n\r\n')
         elif is_target:
             print(f"[FAKED] {host.decode()} {method.decode()}")
-            client_sock.sendall(FAKE_RESPONSE)
+            client_sock.sendall(make_response())
         else:
             # Forward HTTP
             try:
